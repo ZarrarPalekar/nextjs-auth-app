@@ -2,14 +2,30 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const [user, setUser] = useState({
     password: "",
     username: "",
   });
+  const [loading, setLoading] = useState(false);
 
-  const onLogin = async () => {};
+  const onLogin = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/users/signup", user);
+      console.log("response: ", response.data);
+      toast.success("Hello world");
+      router.push("/login");
+    } catch (error: any) {
+      console.log("error: ", error);
+      toast.error(error?.response?.data?.error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
