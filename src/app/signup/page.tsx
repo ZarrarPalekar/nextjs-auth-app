@@ -32,11 +32,11 @@ const SignUp = () => {
     try {
       setLoading(true);
       const response = await axios.post("/api/users/signup", user);
-      console.log("response: ", response.data);
-      toast.success("Hello world");
+      toast.success(
+        "Please verify your account by clicking the link sent to the email"
+      );
       router.push("/login");
     } catch (error: any) {
-      console.log("error: ", error);
       toast.error(error?.response?.data?.error);
     } finally {
       setLoading(false);

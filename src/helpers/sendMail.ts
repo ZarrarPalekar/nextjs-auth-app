@@ -25,6 +25,9 @@ export const sendMail = async ({ email, emailType, userId }: any) => {
         break;
     }
 
+    // check is user exists
+    const user = await User.findOne({ email });
+
     const transporter = nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
@@ -39,11 +42,11 @@ export const sendMail = async ({ email, emailType, userId }: any) => {
       to: email,
       subject:
         emailType === "VERIFY" ? "Account Verification" : "Reset Password",
-      html: `<h1>Hello ${email}</h1><p>Please ${
+      html: `<h1>Hello ${user.username}</h1><p>Please ${
         emailType === "VERIFY" ? "verify your account" : "reset your password"
-      } by clicking the </p><a href="${
+      } by clicking the link below.</p><a href="${
         process.env.DOMAIN
-      }/verifyemail?token=${hashedToken}">link</a>`,
+      }/verifyemail?token=${hashedToken}">Click here</a>`,
     };
 
     const mailResponse = await transporter.sendMail(mailOptions);
