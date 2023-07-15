@@ -29,35 +29,38 @@ const ProfilePage = () => {
     }
   };
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>Profile</h1>
-      <hr />
-      <p>Profile page</p>
-      <h2 className="p-1 rounded bg-green-500">
+    <div className="flex flex-col items-center justify-center min-h-screen py-8 bg-gray-100">
+      <h1 className="text-4xl font-bold mb-6 text-blue-800">Profile</h1>
+      <hr className="w-16 border-2 border-blue-800 mb-8" />
+      <p className="text-lg text-gray-600">Profile page</p>
+      <div className="bg-green-500 rounded-lg p-4 mt-8">
         {user ? (
           <Link
-            href={`/profile/${user._id}`}
+            href={{
+              pathname: `/profile/${user._id}`,
+              query: { username: user.username },
+            }}
             title={`View ${user.username} data`}
+            className="text-white font-bold"
           >
             Go to profile
           </Link>
         ) : (
-          "No user details"
+          <p className="text-white font-bold">No user details</p>
         )}
-      </h2>
-      <hr />
+      </div>
+      <hr className="w-16 border-2 border-blue-800 mt-8" />
       <button
         onClick={logout}
-        className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8"
       >
         Logout
       </button>
-
       <button
         onClick={getUserDetails}
-        className="bg-green-800 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4"
       >
-        GetUser Details
+        Get User Details
       </button>
     </div>
   );

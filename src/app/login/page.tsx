@@ -42,20 +42,26 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>{loading ? "Processing" : "Login"}</h1>
-      <hr />
-      <label htmlFor="email">User Name</label>
+      <h1 className="text-4xl font-bold mb-4">
+        {loading ? "Processing" : "Login"}
+      </h1>
+      <hr className="w-1/2 mb-4" />
+      <label htmlFor="email" className="text-lg">
+        User Name
+      </label>
       <input
         type="email"
         id="email"
         value={user.email}
         onChange={(e) => setUser({ ...user, email: e.target.value })}
-        placeholder="Enter a email"
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+        placeholder="Enter an email"
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black w-64"
       />
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password" className="text-lg">
+        Password
+      </label>
       <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black w-64"
         id="password"
         type="password"
         value={user.password}
@@ -64,14 +70,14 @@ const Login = () => {
       />
       <button
         onClick={onLogin}
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-blue-500 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={buttonDisabled}
-        style={{ cursor: buttonDisabled ? "not-allowed" : "pointer" }}
       >
-        {/* {buttonDisabled ? "Not Allowed" : "Sign Up"} */}
         Login
       </button>
-      <Link href="/signup">New User? Go to Sign Up</Link>
+      <Link href="/signup" className="text-blue-500">
+        New User? Go to Sign Up
+      </Link>
     </div>
   );
 };
