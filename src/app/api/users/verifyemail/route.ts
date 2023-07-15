@@ -1,6 +1,6 @@
 import { connect } from "@/dbConfig/dbConfig";
-import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
+import User from "@/models/userModel";
 
 connect();
 
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     await user.save();
 
     return NextResponse.json({
-      message: "Successfully verified",
+      message: "Email verified successfully",
       success: true,
     });
   } catch (error: any) {

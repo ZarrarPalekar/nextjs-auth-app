@@ -29,8 +29,8 @@ export const sendMail = async ({ email, emailType, userId }: any) => {
     const user = await User.findOne({ email });
 
     const transporter = nodemailer.createTransport({
-      host: "sandbox.smtp.mailtrap.io",
-      port: 2525,
+      host: "smtp-relay.brevo.com",
+      port: 587,
       auth: {
         user: process.env.MAIL_TRAP_USER,
         pass: process.env.MAIL_TRAP_PASSWORD,
@@ -38,7 +38,7 @@ export const sendMail = async ({ email, emailType, userId }: any) => {
     });
 
     const mailOptions = {
-      from: "zarrar@yopmail.com",
+      from: "meetzarrar@gmail.com",
       to: email,
       subject:
         emailType === "VERIFY" ? "Account Verification" : "Reset Password",
