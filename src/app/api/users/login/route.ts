@@ -16,6 +16,12 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 400 });
     }
+    if (!user.isVerified) {
+      return NextResponse.json(
+        { error: "User has not yet verified via link sent on the email" },
+        { status: 400 }
+      );
+    }
 
     // check password
     const isMatch = await bcrypt.compare(password, user.password);
